@@ -1,1 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import "tailwindcss";
+
+
+/* Para textos principales */
+.title {
+  font-family: 'Josefin Sans', sans-serif;
+}
+/* Para párrafos */
+.paragraph {
+  font-family: 'Inria Serif', serif;
+}
+/*Color para texto */
+.text-blue {
+  color: #2469A0;
+}
+
+/* Para fondos de cualquiera */
+.color-blue {
+  background: #2469A0;
+}
+
+/* Para bordes */
+.border-blue {
+  border-color: #2469A0;
+}
+
+
+/* Clase personalizada para el modulo de informacion */
+.blue-section {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #2469A0;
+  padding-top: 120px;
+  padding-bottom: 60px;
+  margin-top: 30px;
+  position: relative;
+  border-top-left-radius: 50% 80px;
+  border-top-right-radius: 50% 80px;
+}
+
+
+@media (max-width: 768px) {
+  .blue-section {
+    padding-top: 80px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    border-top-left-radius: 50% 60px;
+    border-top-right-radius: 50% 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blue-section {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    margin-top: 30px;
+    border-top-left-radius: 50% 40px;
+    border-top-right-radius: 50% 40px;
+  }
+}
+
+/* Clase personalizada para el círculo de la sección de startPage*/
+.hero-circle {
+  position: absolute;
+  right: -300px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 900px;
+  height: 900px;
+  background: #2469A0;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+@media (max-width: 1024px) {
+  .hero-circle {
+    width: 600px;
+    height: 600px;
+    right: -200px;
+    top: -50px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-circle {
+    width: 420px;
+    height: 420px;
+    right: -5px;
+    top: 400px;
+  }
+}

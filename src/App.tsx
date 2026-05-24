@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Start from './components/startPage/Start'
 import About from './components/aboutUsPage/About';
 import InformationUser1 from './components/informationUserPage/InformationUser1';
+import InformationUser2 from './components/informationUserPage/InformationUser2';
 import MedicineForm from './components/medicineFormPage/MedicineForm';
 import Accessibility from './components/accesibilityPage/Accessibility';
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Start />} />
           <Route path="/about" element={<About />} />
           <Route path="/information-user1" element={<InformationUser1 />} />
+          <Route path="/information-user2" element={<InformationUser2 />} />
           <Route path="/medicine-form" element={<MedicineForm />} />
           <Route path="/accessibility" element={<Accessibility />} />
         </Routes>

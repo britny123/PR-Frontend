@@ -11,7 +11,7 @@ export default function SmallButton({text ,onClick,}: SmallButtonProps) {
   return (
     <button
       onClick={onClick}
-      className=" w-32 h-5 items-center justify-center flex rounded-full paragraph border border-blue text-blue font-semibold transition-all duration-200 hover:-translate-y-1">
+      className=" w-32 h-5 items-center justify-center flex rounded-full paragraph border border-blue text-blue font-semibold transition-all duration-200 hover:-translate-y-1 cursor-pointer">
       {text}
     </button>
   );

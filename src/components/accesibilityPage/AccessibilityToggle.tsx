@@ -11,7 +11,7 @@ export default function AccessibilityToggle({ textToSpeech, onTextToSpeechChange
     <div className="w-full h-12 flex items-center justify-center">
       <button
         onClick={() => onTextToSpeechChange(!textToSpeech)}
-        className={`px-10 py-2 rounded-full  paragraph transition-all border-2 ${
+        className={`w-full cursor-pointer px-10 py-2 rounded-full  paragraph transition-all border-2 ${
           textToSpeech
             ? "bg-blue text-gray-400 border-blue"
             : "bg-white text-gray-400 border-gray-300 hover:border-blue"

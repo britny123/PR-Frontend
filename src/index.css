@@ -26,6 +26,7 @@
   border-color: #2469A0;
 }
 
+/* Para bordes con opacidad */
 .border-blue-opacity {
   border-color: rgba(36, 105, 160, 0.4);
 }

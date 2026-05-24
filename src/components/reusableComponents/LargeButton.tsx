@@ -13,7 +13,7 @@ export default function LargeButton({onClick, text}: LargeButtonProps) {
   return (
     <button
       onClick={onClick}
-      className=" w-full h-12 rounded-full color-blue text-white font-semibold transition-all duration-200 hover:-translate-y-1">
+      className=" w-full h-12 rounded-full color-blue text-white font-semibold transition-all duration-200 hover:-translate-y-1 cursor-pointer">
       {text}
     </button>
   );

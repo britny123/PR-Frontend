@@ -27,14 +27,14 @@ export default function FontSettings({
         <div className="flex justify-center items-center gap-8 border border-blue-opacity p-1 rounded-full">
           <button
             onClick={() => onFontSizeChange(Math.max(fontSize - 10, 80))}
-            className="w-8 h-8 rounded-full color-blue text-white font-bold  hover:opacity-80 transition-opacity flex items-center justify-center"
+            className="w-8 h-8 rounded-full color-blue text-white font-bold  hover:opacity-80 transition-opacity flex items-center justify-center cursor-pointer"
           >
             −
           </button>
           <p className="opacity-40  paragraph w-40 text-center">Font size {fontSize}%</p>
           <button
             onClick={() => onFontSizeChange(Math.min(fontSize + 10, 150))}
-            className="w-8 h-8 rounded-full color-blue text-white font-bold  hover:opacity-80 transition-opacity flex items-center justify-center"
+            className="w-8 h-8 rounded-full color-blue text-white font-bold  hover:opacity-80 transition-opacity flex items-center justify-center cursor-pointer"
           >
             +
           </button>
@@ -45,7 +45,7 @@ export default function FontSettings({
       <div className="flex gap-4 justify-center">
         <button
           onClick={() => onFontWeightChange(!fontWeight)}
-          className={`px-6 py-3 rounded-lg text-4xl transition-all ${
+          className={`cursor-pointer px-6 py-3 rounded-lg text-4xl transition-all ${
             fontWeight
               ? "bg-blue text-blue border-2 border-blue"
               : "bg-white text-blue border-2 border-gray-300 hover:border-blue"
@@ -56,7 +56,7 @@ export default function FontSettings({
         </button>
         <button
           onClick={() => onLetterSpacingChange(!letterSpacing)}
-          className={`px-6 py-3 rounded-lg text-4xl transition-all ${
+          className={`cursor-pointer px-6 py-3 rounded-lg text-4xl transition-all ${
             letterSpacing
               ? "bg-blue text-blue border-2 border-blue"
               : "bg-white text-blue border-2 border-gray-300 hover:border-blue"

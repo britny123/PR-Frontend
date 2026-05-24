@@ -1,11 +1,13 @@
 import { useState } from "react";
-
+import { useNavigate } from 'react-router-dom';
 import InputField from "../reusableComponents/InputField";
 import FormRow from "../reusableComponents/FormRow";
 import ButtonLarge from "../reusableComponents/LargeButton";
 import ButtonSmall from "../reusableComponents/SmallButton";
 
 export default function UserInfoCard() {
+
+  const navigate = useNavigate();
 
   //  Por mientras, luego se conecta con la base de datos y backend para guardar los datos
   const [name, setName] = useState("");
@@ -21,6 +23,7 @@ export default function UserInfoCard() {
     //  para despues usarlos en otro componente como el ProfileCard, por ahora solo se muestra en consola
     console.log("Saved user info:", { name, identification, age, height, weight, blood, gender });
     //despues de guardar, se podrían limpiar los campos
+    navigate("/information-user2"); //despues de guardar, se podría redirigir al usuario a su perfil para ver la información actualizada
   };
 
   return (

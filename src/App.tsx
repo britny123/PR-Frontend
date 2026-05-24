@@ -4,6 +4,7 @@ import Start from './components/startPage/Start'
 import About from './components/aboutUsPage/About';
 import InformationUser1 from './components/informationUserPage/InformationUser1';
 import MedicineForm from './components/medicineFormPage/MedicineForm';
+import Accessibility from './components/accesibilityPage/Accessibility';
 
 
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/information-user1" element={<InformationUser1 />} />
           <Route path="/medicine-form" element={<MedicineForm />} />
+          <Route path="/accessibility" element={<Accessibility />} />
         </Routes>
       </BrowserRouter>
     </div>

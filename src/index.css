@@ -26,6 +26,9 @@
   border-color: #2469A0;
 }
 
+.border-blue-opacity {
+  border-color: rgba(36, 105, 160, 0.4);
+}
 
 /* Clase personalizada para el modulo de informacion */
 .blue-section {

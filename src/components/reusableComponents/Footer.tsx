@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer className=" color-blue py-4 pt-4 flex items-center justify-center px-4 w-full h-32">
       <div className="border-t border-gray-400 w-full h-20 mt-10">
-      <p className="text-center text-white text-xs sm:text-sm font-normal opacity-40 mt-8">© 2026 Pill Reminder. Todos los derechos Reservados</p>
+      <p className="text-center text-white text-xs sm:text-sm font-normal opacity-40 mt-8">© 2026 Pill Reminder. all rights reserved</p>
       </div>
     </footer>
     

@@ -3,7 +3,7 @@ import Footer from "../reusableComponents/Footer";
 import UserInfoCard from "../informationUserPage/UserInfoCard";
 import Header from "../reusableComponents/Header";
 
-export default function MoreInformation() {
+export default function InformationUser1() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
 

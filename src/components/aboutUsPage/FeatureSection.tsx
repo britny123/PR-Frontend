@@ -3,7 +3,7 @@ import Recordatorios from "../../assets/imgs/Recordatorios.png";
 import Horarios from "../../assets/imgs/horarios.png";
 import Bienestar from "../../assets/imgs/bienestar.png";
 
-export default function FeaturesSection() {
+export default function FeatureSection() {
 
  const features = [
   { title: "Smart reminders available", logo: Recordatorios },

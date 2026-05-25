@@ -19,7 +19,7 @@ export  default function StartSection () {
           </p>
 
           <div className="title flex flex-col sm:flex-row gap-3 mt-6">
-            <button className="color-blue  text-white font-semibold py-3 px-20 rounded-full w-full h-12 sm:w-auto cursor-pointer ">
+            <button onClick={() => navigate('/register')} className="color-blue  text-white font-semibold py-3 px-20 rounded-full w-full h-12 sm:w-auto cursor-pointer ">
               Start now
             </button>
             <button onClick={() => navigate('/about')} className="title bg-white border border-color-blue text-blue hover:text-white font-semibold py-3 px-20 rounded-full w-full sm:w-auto cursor-pointer ">

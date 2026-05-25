@@ -11,7 +11,7 @@ return (
 
         <Header />
         <div className="md:mt-10">
-            <ReturnButton onClick={() => navigate('/')} />
+            <ReturnButton onClick={() => navigate('/register')} />
         </div>
 
         <main className="flex-1 flex justify-center items-center mb-10">

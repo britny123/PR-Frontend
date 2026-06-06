@@ -3,6 +3,7 @@ import ButtonSmall from "../reusableComponents/SmallButton";
 import FontSettings from "./FontSettings";
 import AccessibilityToggle from "./AccessibilityToggle";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 export default function AccessibilityCard() {
@@ -10,6 +11,8 @@ export default function AccessibilityCard() {
   const [fontWeight, setFontWeight] = useState(false);
   const [letterSpacing, setLetterSpacing] = useState(false);
   const [textToSpeech, setTextToSpeech] = useState(false);
+
+  const navigate = useNavigate();
 
     const handleResetSettings = () => {
     setFontSize(100);
@@ -42,7 +45,7 @@ export default function AccessibilityCard() {
           <ButtonLarge onClick={handleResetSettings} text="Reset settings" />
 
           {/* Exit Button */}
-          <ButtonSmall onClick={() => {}} text="Exit" />
+          <ButtonSmall onClick={() => navigate("/home")} text="Exit" />
         </div>
   )
 

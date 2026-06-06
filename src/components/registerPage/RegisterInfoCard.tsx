@@ -17,7 +17,7 @@ export default function RegisterInfoCard() {
         user,
         password,
     });
-    navigate('/login');
+    navigate('/information-user1');
 };
 
 return (

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import InputField from "../reusableComponents/InputField";
 import ButtonLarge from "../reusableComponents/LargeButton";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginInformationCard() {
+  const navigate = useNavigate();
   //  Por mientras, luego se conecta con la base de datos y backend para guardar los datos
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +14,7 @@ export default function LoginInformationCard() {
         user,
         password,
     });
+    navigate('/home'); //despues de guardar, se redirigire a la pagina principal
 };
 
 return (

@@ -8,6 +8,7 @@ function Sidebar() {
   return (
     <div className="fixed left-0 top-0 h-screen w-28 bg-white flex flex-col items-center py-6 z-50">
       <img src={logo2} alt="Pill Reminder" className="w-16 h-auto mb-auto" />
+
       <button
         className=""
         onClick={() => navigate("/accessibility")}

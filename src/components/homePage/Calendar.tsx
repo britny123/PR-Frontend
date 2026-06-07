@@ -10,11 +10,13 @@ export function MedicineCalendar({ medicineDays = [] }: MedicineCalendarProps) {
   const [selected, setSelected] = useState<Date | undefined>(new Date());
 
   return (
-    <div className="p-10 bg-white rounded-lg shadow-md w-full max-w-md">
+    <div className="p-10 bg-white rounded-lg shadow-md w-full max-w-3xl border border-gray-200 flex flex-col items-center">
       <DayPicker
         mode="single"
         selected={selected}
         onSelect={setSelected}
+        navLayout="around"
+        captionLayout="label"
         modifiers={{ medicine: medicineDays }}
     
         modifiersClassNames={{
@@ -23,7 +25,10 @@ export function MedicineCalendar({ medicineDays = [] }: MedicineCalendarProps) {
             today: "border-2 border-blue w-8 h-8 flex items-center justify-center rounded-full",
         }}
         classNames={{ 
-        caption_label: "text-lg font-bold text-blue",
+        caption_label: "text-xl font-bold text-blue",
+        day_button: "text-lg font-semibold",
+        month_grid: "border-separate border-spacing-1",
+        weekday: "text-base font-medium p-2"
     }}
 
       />

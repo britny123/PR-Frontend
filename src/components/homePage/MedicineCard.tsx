@@ -13,7 +13,7 @@ interface MedicineCardProps {
 
 function MedicineCard({ medicine }: MedicineCardProps) {
   return (
-    <div className="bg-white rounded-3xl p-6 w-52 hover:shadow-xl transition-shadow">
+    <div className="bg-white rounded-3xl p-6 w-52 border border-gray-200 hover:shadow-xl transition-shadow">
       <img
         src={medicine.icon}
         alt={medicine.name}

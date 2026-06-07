@@ -4,8 +4,11 @@ import MedicineSection from "./MedicineSection";
 import { medicines } from "./medecineData";
 import Header from "../homePage/HeaderBar";
 import "react-day-picker/dist/style.css";
+import UserInfoPanel from "../homePage/UserInfoPanel";
+import { useState } from "react";
 
 export default function Home() {
+    const [showUserPanel, setShowUserPanel] = useState(false);
   return (
     <div className="flex min-h-screen bg-white overflow-hidden">
       <Sidebar />
@@ -15,7 +18,7 @@ export default function Home() {
           <Header
             userName="Brittany"
             date="September 15, 2024"
-            onProfileClick={() => alert("Profile clicked")}
+            onProfileClick={() => setShowUserPanel(!showUserPanel)}
           />
         </div>
 
@@ -28,6 +31,25 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Panel de Usuario - Aparece al hacer click */}
+          {showUserPanel && (
+            <div className="fixed right-0 top-24 bottom-0 w-80 bg-white shadow-lg z-40 overflow-y-auto p-3 border border-gray-300">
+              <UserInfoPanel />
+            </div>
+          )}
+
+          {/* Overlay para cerrar el panel */}
+          {showUserPanel && (
+            <div
+              className="fixed inset-0 z-30"
+              onClick={() => setShowUserPanel(false)}
+            />
+          )}
+
+
+
+
         </div>
       </div>
     </div>

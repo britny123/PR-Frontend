@@ -6,7 +6,9 @@ import InformationUser1 from './components/informationUserPage/InformationUser1'
 import InformationUser2 from './components/informationUserPage/InformationUser2';
 import MedicineForm from './components/medicineFormPage/MedicineForm';
 import Accessibility from './components/accesibilityPage/Accessibility';
-
+import RegisterInformation from './components/registerPage/RegisterInformation';
+import LoginInformation from './components/loginPage/LoginInformation';
+import Home from './components/homePage/Home';
 
 
 function App() {
@@ -20,6 +22,9 @@ function App() {
           <Route path="/information-user2" element={<InformationUser2 />} />
           <Route path="/medicine-form" element={<MedicineForm />} />
           <Route path="/accessibility" element={<Accessibility />} />
+          <Route path="/register" element={<RegisterInformation />} />
+          <Route path="/login" element={<LoginInformation />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>

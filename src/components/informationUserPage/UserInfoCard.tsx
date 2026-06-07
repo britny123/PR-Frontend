@@ -23,7 +23,7 @@ export default function UserInfoCard() {
     //  para despues usarlos en otro componente como el ProfileCard, por ahora solo se muestra en consola
     console.log("Saved user info:", { name, identification, age, height, weight, blood, gender });
     //despues de guardar, se podrían limpiar los campos
-    navigate("/information-user2"); //despues de guardar, se podría redirigir al usuario a su perfil para ver la información actualizada
+    navigate("/information-user2"); //despues de guardar, se redirigire a la segunda parte del formulario
   };
 
   return (

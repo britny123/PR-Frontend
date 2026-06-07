@@ -11,7 +11,6 @@ export default function Start() {
         <StartSection />
         <StartImage />
       </main>
-      {/*<Footer />*/}
     </div>
   );
 }

@@ -16,9 +16,17 @@
   color: #2469A0;
 }
 
+.text-water-blue {
+  color: #91E0F2;
+}
+
 /* Para fondos de cualquiera */
 .color-blue {
   background: #2469A0;
+}
+
+.color-water-blue {
+  background: #91E0F2;
 }
 
 /* Para bordes */

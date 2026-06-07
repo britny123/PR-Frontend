@@ -20,6 +20,7 @@ export default function UserInfoCard() {
     //  para despues usarlos en otro componente como el ProfileCard, por ahora solo se muestra en consola
     console.log("Saved user info:", { phone, emergencyContact, emergencyPerson, relationship, allergies, conditions});
     //despues de guardar, se podrían limpiar los campos
+    navigate("/login"); //despues de guardar, se redirigire a la segunda parte del formulario
   };
 
   return (

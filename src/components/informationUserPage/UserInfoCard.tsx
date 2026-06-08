@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import InputField from "../reusableComponents/InputField";
 import FormRow from "../reusableComponents/FormRow";
 import ButtonLarge from "../reusableComponents/LargeButton";
 import ButtonSmall from "../reusableComponents/SmallButton";
+import { useUserData } from "../../context/UserDataContext";
 
 export default function UserInfoCard() {
-
   const navigate = useNavigate();
+  const { setUserData } = useUserData();
 
-  //  Por mientras, luego se conecta con la base de datos y backend para guardar los datos
   const [name, setName] = useState("");
   const [identification, setIdentification] = useState("");
   const [age, setAge] = useState("");
@@ -19,11 +19,18 @@ export default function UserInfoCard() {
   const [gender, setGender] = useState("");
 
   const handleSave = () => {
-    // Aquí se implementaría la lógica para guardar los datos, por ejemplo, enviándolos a un servidor o almacenándolos localmente,
-    //  para despues usarlos en otro componente como el ProfileCard, por ahora solo se muestra en consola
-    console.log("Saved user info:", { name, identification, age, height, weight, blood, gender });
-    //despues de guardar, se podrían limpiar los campos
-    navigate("/information-user2"); //despues de guardar, se redirigire a la segunda parte del formulario
+    setUserData((prev) => ({
+      ...prev,
+      name,
+      identification,
+      age,
+      height,
+      weight,
+      blood,
+      gender,
+    }));
+
+    navigate("/information-user2");
   };
 
   return (
@@ -55,18 +62,37 @@ export default function UserInfoCard() {
 
       <FormRow>
         <div className="flex-1">
-          <InputField placeholder="Height" type="text" value={height} onChange={(e) => setHeight(e.target.value)} />
-
+          <InputField
+            placeholder="Height"
+            type="text"
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+          />
         </div>
 
         <div className="flex-1">
-          <InputField placeholder="Weight" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
+          <InputField
+            placeholder="Weight"
+            type="number"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+          />
         </div>
       </FormRow>
 
-      <InputField placeholder="Blood" type="text" value={blood} onChange={(e) => setBlood(e.target.value)} />
+      <InputField
+        placeholder="Blood"
+        type="text"
+        value={blood}
+        onChange={(e) => setBlood(e.target.value)}
+      />
 
-      <InputField placeholder="Gender" type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
+      <InputField
+        placeholder="Gender"
+        type="text"
+        value={gender}
+        onChange={(e) => setGender(e.target.value)}
+      />
 
       <ButtonLarge onClick={handleSave} text="Save" />
       <ButtonSmall onClick={() => {}} text="Exit" />

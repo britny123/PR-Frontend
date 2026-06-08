@@ -1,26 +1,36 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import InputField from "../reusableComponents/InputField";
 import ButtonLarge from "../reusableComponents/LargeButton";
 import ButtonSmall from "../reusableComponents/SmallButton";
+import { useUserData } from "../../context/UserDataContext";
 
-export default function UserInfoCard() {
+export default function UserInfoCard2() {
+  const navigate = useNavigate();
+  const { setUserData } = useUserData();
 
-  //  Por mientras, luego se conecta con la base de datos y backend para guardar los datos
   const [phone, setPhone] = useState("");
   const [emergencyContact, setEmergencyContact] = useState("");
   const [emergencyPerson, setEmergencyPerson] = useState("");
   const [relationship, setRelationship] = useState("");
   const [allergies, setAllergies] = useState("");
   const [conditions, setConditions] = useState("");
-  const navigate = useNavigate();
 
   const handleSave = () => {
-    // Aquí se implementaría la lógica para guardar los datos, por ejemplo, enviándolos a un servidor o almacenándolos localmente,
-    //  para despues usarlos en otro componente como el ProfileCard, por ahora solo se muestra en consola
-    console.log("Saved user info:", { phone, emergencyContact, emergencyPerson, relationship, allergies, conditions});
-    //despues de guardar, se podrían limpiar los campos
-    navigate("/login"); //despues de guardar, se redirigire a la segunda parte del formulario
+    setUserData((prev) => ({
+      ...prev,
+      phone,
+      emergencyContact,
+      emergencyPerson,
+      relationship,
+      allergies: allergies
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean),
+      conditions,
+    }));
+
+    navigate("/home");
   };
 
   return (
@@ -48,29 +58,31 @@ export default function UserInfoCard() {
         type="text"
         value={emergencyPerson}
         onChange={(e) => setEmergencyPerson(e.target.value)}
-        />
+      />
 
-      <InputField placeholder="Relationship with person"
+      <InputField
+        placeholder="Relationship with person"
         type="text"
         value={relationship}
         onChange={(e) => setRelationship(e.target.value)}
-        />
+      />
 
-       <InputField
+      <InputField
         placeholder="Allergies"
         type="text"
         value={allergies}
-        onChange={(e) => setAllergies(e.target.value)} />
-        
+        onChange={(e) => setAllergies(e.target.value)}
+      />
 
       <InputField
-       placeholder="Conditions" 
-       type="text" 
-       value={conditions} 
-       onChange={(e) => setConditions(e.target.value)} />
+        placeholder="Conditions"
+        type="text"
+        value={conditions}
+        onChange={(e) => setConditions(e.target.value)}
+      />
 
       <ButtonLarge onClick={handleSave} text="Save" />
-      <ButtonSmall onClick={() => {navigate("/information-user1")}} text="Exit" />
+      <ButtonSmall onClick={() => navigate("/information-user1")} text="Exit" />
     </div>
   );
 }

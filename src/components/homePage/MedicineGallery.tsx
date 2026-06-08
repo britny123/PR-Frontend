@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import MedicineCard from "./MedicineCard";
+import { useNavigate } from 'react-router-dom';
 import "swiper/css";
 
 interface MedicineCarouselProps {
@@ -10,6 +11,7 @@ interface MedicineCarouselProps {
 
 function MedicineCarousel({ medicines }: MedicineCarouselProps) {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const navigate = useNavigate();
 
   return (
     <div className="flex items-center gap-4 w-250">
@@ -31,6 +33,16 @@ function MedicineCarousel({ medicines }: MedicineCarouselProps) {
             <MedicineCard medicine={medicine} />
           </SwiperSlide>
         ))}
+        <SwiperSlide >
+            <button onClick={() => navigate('/medicine-form')} className="w-52 min-h-80 bg-white rounded-3xl flex flex-col items-center justify-center gap-2 hover:shadow-xl transition-shadow">
+              <div className="w-14 h-14 color-blue rounded-full flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+              <span className="text-blue text-sm">Add medicine</span>
+            </button>
+          </SwiperSlide>
       </Swiper>
       </div>
       <button

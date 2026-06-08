@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from 'react-router-dom';
 import InputField from "../reusableComponents/InputField";
 import FormRow from "../reusableComponents/FormRow";
 import ButtonLarge from "../reusableComponents/LargeButton";
@@ -7,7 +7,8 @@ import ButtonSmall from "../reusableComponents/SmallButton";
 import MedicineIcon from "./MedicineIcon";
 
 export default function MedicineCard() {
-
+  const navigate = useNavigate();
+  
   const [name, setName] = useState("");
   const [dailyDose, setDailyDose] = useState("");
   const [timeTake, setTimeTake] = useState("");
@@ -25,6 +26,7 @@ export default function MedicineCard() {
 
   const handleSave = () => {
     console.log("Saved medicine info:", { name, dailyDose, timeTake, startDate, endDate, ExpirationDate, selectedIcon });
+    navigate('/home');
   };
 
   return (
@@ -73,7 +75,7 @@ export default function MedicineCard() {
       />
 
       <ButtonLarge onClick={handleSave} text="Save" />
-      <ButtonSmall onClick={() => {}} text="Exit" />
+      <ButtonSmall onClick={() => navigate('/home')} text="Exit" />
     </div>
   );
 }

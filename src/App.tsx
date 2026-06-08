@@ -9,10 +9,11 @@ import Accessibility from './components/accesibilityPage/Accessibility';
 import RegisterInformation from './components/registerPage/RegisterInformation';
 import LoginInformation from './components/loginPage/LoginInformation';
 import Home from './components/homePage/Home';
-
+import { UserDataProvider } from "./context/UserDataContext";
 
 function App() {
   return (
+    <UserDataProvider>
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -28,6 +29,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    </UserDataProvider>
   )
 }
 

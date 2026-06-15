@@ -1,14 +1,18 @@
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import InputField from "../reusableComponents/InputField";
 import FormRow from "../reusableComponents/FormRow";
 import ButtonLarge from "../reusableComponents/LargeButton";
 import ButtonSmall from "../reusableComponents/SmallButton";
 import MedicineIcon from "./MedicineIcon";
+import { createMedicine, getMedicineById, updateMedicine } from "../../services/medicineService";
 
 export default function MedicineCard() {
   const navigate = useNavigate();
-  
+  const location = useLocation();
+  const { id } = useParams();
+  const isEditing = Boolean(id);
+  const medicineToEdit = location.state?.medicine;
   const [name, setName] = useState("");
   const [dailyDose, setDailyDose] = useState("");
   const [timeTake, setTimeTake] = useState("");
@@ -24,15 +28,52 @@ export default function MedicineCard() {
     
   ];
 
-  const handleSave = () => {
-    console.log("Saved medicine info:", { name, dailyDose, timeTake, startDate, endDate, ExpirationDate, selectedIcon });
-    navigate('/home');
+  useEffect(() => {
+  const loadMedicine = async () => {
+    if (!id) return;
+
+    const data = medicineToEdit || await getMedicineById(id);
+
+    setName(data.name);
+    setDailyDose(data.dailyDose);
+    setTimeTake(data.timeTake);
+    setStartDate(data.startDate);
+    setEndDate(data.endDate);
+    setExpirationDate(data.expirationDate);
+    setSelectedIcon(data.icon);
   };
+
+  loadMedicine();
+}, [id, medicineToEdit]);
+
+const handleSave = async () => {
+  const medicineData = {
+    name,
+    dailyDose,
+    timeTake,
+    startDate,
+    endDate,
+    expirationDate: ExpirationDate,
+    icon: selectedIcon,
+  };
+
+  try {
+    if (isEditing && id) {
+      await updateMedicine(id, medicineData);
+    } else {
+      await createMedicine(medicineData);
+    }
+
+    navigate("/home");
+  } catch (error) {
+    console.error("Error saving medicine:", error);
+  }
+};
 
   return (
     <div className="w-87.5 bg-white rounded-[30px] border border-gray-300 flex flex-col gap-4 p-6 sm:p-10 justify-center items-center">
       <h2 className="text-blue text-xl font-bold text-center title">
-        Add a new medicine
+        {isEditing ? "Edit medicine" : "Add a new medicine"}
       </h2>
 
       <InputField
@@ -74,7 +115,7 @@ export default function MedicineCard() {
         setSelectedIcon={setSelectedIcon} 
       />
 
-      <ButtonLarge onClick={handleSave} text="Save" />
+      <ButtonLarge onClick={handleSave} text={isEditing ? "Update" : "Save"} />
       <ButtonSmall onClick={() => navigate('/home')} text="Exit" />
     </div>
   );

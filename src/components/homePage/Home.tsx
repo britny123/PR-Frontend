@@ -1,7 +1,7 @@
 import Sidebar from "../homePage/Sidebar";
 import { MedicineCalendar } from "../homePage/Calendar";
 import MedicineSection from "./MedicineSection";
-import { medicines } from "./medecineData";
+import { getMedicines } from "../../services/medicineService";
 import Header from "../homePage/HeaderBar";
 import "react-day-picker/dist/style.css";
 import UserInfoPanel from "../homePage/UserInfoPanel";
@@ -11,6 +11,8 @@ import { getProfile } from "../../services/profileService";
 export default function Home() {
     const [showUserPanel, setShowUserPanel] = useState(false);
       const [profile, setProfile] = useState<any>(null);
+      const [medicines, setMedicines] = useState<any[]>([]);
+
       useEffect(() => {
       
           const loadProfile = async () => {
@@ -28,6 +30,19 @@ export default function Home() {
           loadProfile();
       
         }, []);
+
+      useEffect(() => {
+      const loadMedicines = async () => {
+        try {
+          const data = await getMedicines();
+          setMedicines(data);
+        } catch (error) {
+          console.error("Error loading medicines:", error);
+        }
+      };
+
+  loadMedicines();
+}, []);
   return (
     <div className="flex min-h-screen bg-white overflow-hidden">
       <Sidebar />

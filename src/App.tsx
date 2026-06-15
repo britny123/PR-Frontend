@@ -24,6 +24,7 @@ function App() {
           <Route path="/information-user1" element={<InformationUser1 />} />
           <Route path="/information-user2" element={<InformationUser2 />} />
           <Route path="/medicine-form" element={<MedicineForm />} />
+          <Route path="/medicine-form/:id" element={<MedicineForm />} />
           <Route path="/accessibility" element={<Accessibility />} />
           <Route path="/register" element={<RegisterInformation />} />
           <Route path="/login" element={<LoginInformation />} />

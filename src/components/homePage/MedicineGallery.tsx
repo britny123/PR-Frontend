@@ -17,7 +17,7 @@ function MedicineCarousel({ medicines }: MedicineCarouselProps) {
     <div className="flex items-center gap-4 w-250">
       <button
         onClick={() => swiperInstance?.slidePrev()}
-        className="shrink-0 flex items-center justify-center w-12 h-12  text-gray-400 hover:text-white hover:color-blue transition-all duration-200 text-2xl font-semibold"
+        className="shrink-0 flex items-center justify-center w-12 h-12 text-4xl text-blue-900 hover:text-gray-400 transition-all duration-200 font-semibold"
       >
         &#8249;
       </button>
@@ -34,7 +34,7 @@ function MedicineCarousel({ medicines }: MedicineCarouselProps) {
           </SwiperSlide>
         ))}
         <SwiperSlide >
-            <button onClick={() => navigate('/medicine-form')} className="w-52 min-h-80 bg-white rounded-3xl flex flex-col items-center justify-center gap-2 hover:shadow-xl transition-shadow">
+            <button onClick={() => navigate('/medicine-form')} className="w-52 h-64 bg-white rounded-3xl flex flex-col items-center justify-center gap-2 hover:shadow-xl transition-shadow">
               <div className="w-14 h-14 color-blue rounded-full flex items-center justify-center">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                   <path d="M12 5v14M5 12h14" />
@@ -47,7 +47,7 @@ function MedicineCarousel({ medicines }: MedicineCarouselProps) {
       </div>
       <button
         onClick={() => swiperInstance?.slideNext()}
-        className="shrink-0 flex items-center justify-center w-12 h-12  text-gray-400 hover:text-white hover:color-blue transition-all duration-200 text-2xl font-semibold"
+        className="shrink-0 flex items-center justify-center text-4xl w-12 h-12  text-blue-900 hover:text-gray-400 transition-all duration-200 font-semibold"
       >
         &#8250;
       </button>

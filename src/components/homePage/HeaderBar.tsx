@@ -3,7 +3,6 @@ import { useState } from "react";
 import { User } from "lucide-react";
 
 
-
 interface HeaderProps {
   userName: string;
   date: string;
@@ -11,7 +10,6 @@ interface HeaderProps {
 }
 
 export default function Header({userName,date,onProfileClick,}: HeaderProps) {
-
     const [search, setSearch] = useState("");
  return (
     <div className="fixed top-0 left-28 right-0 z-50 bg-white p-4">

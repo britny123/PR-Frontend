@@ -4,10 +4,11 @@ import InputField from "../reusableComponents/InputField";
 import ButtonLarge from "../reusableComponents/LargeButton";
 import ButtonSmall from "../reusableComponents/SmallButton";
 import { useUserData } from "../../context/UserDataContext";
+import { createProfile } from "../../services/profileService";
 
 export default function UserInfoCard2() {
   const navigate = useNavigate();
-  const { setUserData } = useUserData();
+  const { userData, setUserData } = useUserData();
 
   const [phone, setPhone] = useState("");
   const [emergencyContact, setEmergencyContact] = useState("");
@@ -16,22 +17,47 @@ export default function UserInfoCard2() {
   const [allergies, setAllergies] = useState("");
   const [conditions, setConditions] = useState("");
 
-  const handleSave = () => {
-    setUserData((prev) => ({
-      ...prev,
-      phone,
-      emergencyContact,
-      emergencyPerson,
-      relationship,
-      allergies: allergies
-        .split(",")
-        .map((item) => item.trim())
-        .filter(Boolean),
-      conditions,
-    }));
+const handleSave = async () => {
+    try {
 
-    navigate("/home");
-  };
+        setUserData((prev) => ({
+            ...prev,
+            phone,
+            emergencyContact,
+            emergencyPerson,
+            relationship,
+            allergies: allergies
+                .split(",")
+                .map((item) => item.trim())
+                .filter(Boolean),
+            conditions,
+        }));
+
+        const profileData = {
+            name: userData.name,
+            identification_number: userData.identification,
+            age: Number(userData.age),
+            height: Number(userData.height),
+            weight: Number(userData.weight),
+            blood_type: userData.blood,
+            gender: userData.gender,
+
+            phone_number: phone,
+            emergency_contact: emergencyContact,
+            emergency_person: emergencyPerson,
+            relationship,
+            allergies,
+            conditions,
+        };
+
+        await createProfile(profileData);
+
+        navigate("/login");
+
+    } catch (error) {
+        console.error(error);
+    }
+};
 
   return (
     <div className="w-87.5 bg-white rounded-[30px] border border-gray-300 flex flex-col gap-4 p-6 sm:p-10 justify-center items-center">

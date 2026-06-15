@@ -5,12 +5,29 @@ import { medicines } from "./medecineData";
 import Header from "../homePage/HeaderBar";
 import "react-day-picker/dist/style.css";
 import UserInfoPanel from "../homePage/UserInfoPanel";
-import { useState } from "react";
-import { useUserData } from "../../context/UserDataContext";
+import { useEffect, useState } from "react";
+import { getProfile } from "../../services/profileService";
 
 export default function Home() {
     const [showUserPanel, setShowUserPanel] = useState(false);
-     const { userData } = useUserData();
+      const [profile, setProfile] = useState<any>(null);
+      useEffect(() => {
+      
+          const loadProfile = async () => {
+            try {
+      
+              const data = await getProfile();
+      
+              setProfile(data);
+      
+            } catch (error) {
+              console.error(error);
+            }
+          };
+      
+          loadProfile();
+      
+        }, []);
   return (
     <div className="flex min-h-screen bg-white overflow-hidden">
       <Sidebar />
@@ -18,7 +35,7 @@ export default function Home() {
       <div className="flex-1 flex flex-col min-w-0 ml-28">
         <div className="shrink-0 px-6 pt-6 pb-4">
           <Header
-            userName={userData.name}
+            userName={profile?.name ||"User"}
             date={new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
             onProfileClick={() => setShowUserPanel(!showUserPanel)}
           />

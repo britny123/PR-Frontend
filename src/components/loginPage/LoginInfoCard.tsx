@@ -2,19 +2,28 @@ import { useState } from "react";
 import InputField from "../reusableComponents/InputField";
 import ButtonLarge from "../reusableComponents/LargeButton";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../services/authService"; 
+
 
 export default function LoginInformationCard() {
   const navigate = useNavigate();
-  //  Por mientras, luego se conecta con la base de datos y backend para guardar los datos
-    const [user, setUser] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSave = () => {
-    console.log("Saved login info:", {
-        user,
-        password,
-    });
-    navigate('/home'); //despues de guardar, se redirigire a la pagina principal
+    const handleSave = async () => {
+     try {
+        const data = await login(
+            username,
+            password
+        );
+
+        localStorage.setItem("token", data.token);
+
+        navigate("/home"); 
+
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 return (
@@ -26,13 +35,13 @@ return (
         <InputField
             placeholder="User"
             type="text"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
         />
 
         <InputField
             placeholder="Password"
-            type="text"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
         />

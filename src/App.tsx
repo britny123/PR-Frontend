@@ -8,6 +8,8 @@ import MedicineForm from './components/medicineFormPage/MedicineForm';
 import Accessibility from './components/accesibilityPage/Accessibility';
 import RegisterInformation from './components/registerPage/RegisterInformation';
 import LoginInformation from './components/loginPage/LoginInformation';
+import EditPersonalInfo from './components/informationUserPage/EditPersonalInfo';
+import EditEmergencyContact from './components/informationUserPage/EditEmergencyContact';
 import Home from './components/homePage/Home';
 import { UserDataProvider } from "./context/UserDataContext";
 
@@ -26,6 +28,8 @@ function App() {
           <Route path="/register" element={<RegisterInformation />} />
           <Route path="/login" element={<LoginInformation />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/edit-profile" element={<EditPersonalInfo />} />
+          <Route path="/edit-emergency-contact" element={<EditEmergencyContact />} />
         </Routes>
       </BrowserRouter>
     </div>

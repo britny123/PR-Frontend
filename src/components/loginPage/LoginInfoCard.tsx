@@ -4,14 +4,19 @@ import ButtonLarge from "../reusableComponents/LargeButton";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/authService"; 
 
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginInformationCard() {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSave = async () => {
-     try {
+        setErrorMessage("");
+    try {
         const data = await login(
             username,
             password
@@ -23,6 +28,7 @@ export default function LoginInformationCard() {
 
     } catch (error) {
         console.error(error);
+        setErrorMessage("Invalid username or password");
     }
 };
 
@@ -39,12 +45,28 @@ return (
             onChange={(e) => setUsername(e.target.value)}
         />
 
+        <div className="relative w-full">
         <InputField
             placeholder="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
         />
+
+        <button
+        type="button"
+        onClick={() => setShowPassword(!showPassword)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-blue"
+        >
+        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+        </button>
+        </div>
+
+        {errorMessage && (
+        <p className="text-red-500 text-sm font-semibold text-center">
+            {errorMessage}
+        </p>
+        )}
 
         <ButtonLarge onClick={handleSave} text="Save" />
     </div>

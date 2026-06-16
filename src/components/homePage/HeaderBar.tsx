@@ -1,5 +1,4 @@
 import SearchBar from "../homePage/SearchBar";
-import { useState } from "react";
 import { User } from "lucide-react";
 
 
@@ -7,10 +6,12 @@ interface HeaderProps {
   userName: string;
   date: string;
   onProfileClick: () => void;
+  search: string;
+  setSearch: (value: string) => void;
 }
 
-export default function Header({userName,date,onProfileClick,}: HeaderProps) {
-    const [search, setSearch] = useState("");
+export default function Header({userName,date,onProfileClick, search, setSearch}: HeaderProps) {
+  
  return (
     <div className="fixed top-0 left-28 right-0 z-50 bg-white p-4">
   <div className="flex items-center justify-between px-6 h-16">

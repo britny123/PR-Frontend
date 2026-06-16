@@ -9,40 +9,46 @@ import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profileService";
 
 export default function Home() {
-    const [showUserPanel, setShowUserPanel] = useState(false);
-      const [profile, setProfile] = useState<any>(null);
-      const [medicines, setMedicines] = useState<any[]>([]);
+  const [showUserPanel, setShowUserPanel] = useState(false);
+  const [profile, setProfile] = useState<any>(null);
+  const [medicines, setMedicines] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
 
-      useEffect(() => {
-      
-          const loadProfile = async () => {
-            try {
-      
-              const data = await getProfile();
-      
-              setProfile(data);
-      
-            } catch (error) {
-              console.error(error);
-            }
-          };
-      
-          loadProfile();
-      
-        }, []);
+  useEffect(() => {
 
-      useEffect(() => {
-      const loadMedicines = async () => {
-        try {
-          const data = await getMedicines();
-          setMedicines(data);
-        } catch (error) {
-          console.error("Error loading medicines:", error);
-        }
-      };
+    const loadProfile = async () => {
+      try {
 
-  loadMedicines();
-}, []);
+        const data = await getProfile();
+
+        setProfile(data);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    loadProfile();
+
+  }, []);
+
+  useEffect(() => {
+    const loadMedicines = async () => {
+      try {
+        const data = await getMedicines();
+        setMedicines(data);
+      } catch (error) {
+        console.error("Error loading medicines:", error);
+      }
+    };
+
+    loadMedicines();
+  }, []);
+
+  const filteredMedicines = medicines.filter((medicine) =>
+    medicine.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="flex min-h-screen bg-white overflow-hidden">
       <Sidebar />
@@ -50,16 +56,18 @@ export default function Home() {
       <div className="flex-1 flex flex-col min-w-0 ml-28">
         <div className="shrink-0 px-6 pt-6 pb-4">
           <Header
-            userName={profile?.name ||"User"}
+            userName={profile?.name || "User"}
             date={new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
             onProfileClick={() => setShowUserPanel(!showUserPanel)}
+            search={search}
+            setSearch={setSearch}
           />
         </div>
 
         <div className="flex-1 px-6 pb-6 min-h-0">
           <div className="w-full h-full bg-gray-100 rounded-tl-3xl rounded-bl-3xl overflow-hidden">
             <div className="p-6 mt-6 ">
-              <MedicineSection medicines={medicines} />
+              <MedicineSection medicines={filteredMedicines} />
               <div className="mt-7 pl-18">
                 <MedicineCalendar medicineDays={[]} />
               </div>

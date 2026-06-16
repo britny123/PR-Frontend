@@ -92,22 +92,22 @@ const handleSave = async () => {
 
       <InputField
         placeholder="Time of Take"
-        type="text"
+        type="time"
         value={timeTake}
         onChange={(e) => setTimeTake(e.target.value)}
       />
 
       <FormRow>
-        <div className="flex-1">
-          <InputField placeholder="StartDate" type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+        <div className="w-1/2 min-w-0">
+          <InputField placeholder="StartDate" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         </div>
 
-        <div className="flex-1">
-          <InputField placeholder="EndDate" type="text" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+       <div className="w-1/2 min-w-0">
+          <InputField placeholder="EndDate" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
       </FormRow>
 
-      <InputField placeholder="Expiration Date" type="text" value={ExpirationDate} onChange={(e) => setExpirationDate(e.target.value)} />
+      <InputField placeholder="Expiration Date" type="date" value={ExpirationDate} onChange={(e) => setExpirationDate(e.target.value)} />
 
       <MedicineIcon 
         icons={icons} 

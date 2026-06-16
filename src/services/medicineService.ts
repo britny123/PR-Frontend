@@ -71,7 +71,7 @@ export const updateMedicine = async (
     const response = await fetch(
         `http://localhost:3000/api/medicines/${id}`,
         {
-            method: "PATCH",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -109,4 +109,25 @@ export const deleteMedicine = async (id: string) => {
     }
 
     return data;
+};
+
+export const getMedicineHistory = async () => {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(
+    "http://localhost:3000/api/medicines/history",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw data;
+  }
+
+  return data;
 };

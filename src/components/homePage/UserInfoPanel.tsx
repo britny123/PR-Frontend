@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profileService";
+import MedicalHistoryModal from "./MedicalHistoryModal";
+import { getMedicineHistory } from "../../services/medicineService";
 
 export default function UserInfoPanel() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState<any>(null);
+  const [showHistory, setShowHistory] = useState(false);
+  const [history, setHistory] = useState([]);
   useEffect(() => {
 
     const loadProfile = async () => {
@@ -24,8 +28,18 @@ export default function UserInfoPanel() {
   }, []);
 
   const handleLogout = () => {
-  localStorage.removeItem("token");
-  navigate("/");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  const openHistory = async () => {
+  try {
+    const data = await getMedicineHistory();
+    setHistory(data);
+    setShowHistory(true);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
   return (
@@ -88,7 +102,7 @@ export default function UserInfoPanel() {
                 <li>—</li>
               )}
               <p className="text-sm font-semibold text-gray-800 mb-0.5 mt-1">
-              Conditions
+                Conditions
               </p>
               {profile?.conditions && (
                 <li>{profile.conditions}</li>
@@ -100,7 +114,7 @@ export default function UserInfoPanel() {
 
       <div className="flex flex-col gap-3 mt-4">
         <button
-         onClick={() => navigate("/edit-profile")}
+          onClick={() => navigate("/edit-profile")}
           className="w-full h-12 rounded-full color-water-blue text-white font-semibold cursor-pointer"
         >
           Edit personal information
@@ -112,7 +126,7 @@ export default function UserInfoPanel() {
           Update emergency contact
         </button>
         <button
-          onClick={() => { }}
+          onClick={openHistory}
           className="w-full h-12 rounded-full color-water-blue text-white font-semibold cursor-pointer"
         >
           Medication history
@@ -125,6 +139,14 @@ export default function UserInfoPanel() {
       >
         logout
       </button>
+
+      <MedicalHistoryModal
+        isOpen={showHistory}
+        onClose={() => setShowHistory(false)}
+        history={history}
+      />
     </div>
+
+
   );
 }

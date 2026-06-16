@@ -1,9 +1,9 @@
-export const medicines = [
+export const medicinesPrueba = [
   {
     id: 1,
     name: "Ambroxol",
     dose: "10 ml (2 teaspoons)",
-    time: "8:00 am",
+    time: "12:21",
     nextDose: "2 hours",
     icon: "/jarabe.webp",
   },
@@ -11,7 +11,7 @@ export const medicines = [
     id: 2,
     name: "Amoxicilina",
     dose: "1 capsule",
-    time: "10:00 am",
+    time: "09:27",
     nextDose: "4 hours",
     icon: "/capsula.webp",
   },
@@ -20,7 +20,7 @@ export const medicines = [
     id: 3,
     name: "Acetaminofén",
     dose: "2 capsule",
-    time: "7:00 am",
+    time: "06:59",
     nextDose: "4 hours",
     icon: "/capsula.webp",
   },
@@ -29,7 +29,7 @@ export const medicines = [
     id: 4,
     name: "Ibuprofeno",
     dose: "1 capsule",
-    time: "12:00 pm",
+    time: "09:20",
     nextDose: "6 hours",
     icon: "/capsula.webp",
   },

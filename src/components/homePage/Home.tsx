@@ -7,6 +7,10 @@ import "react-day-picker/dist/style.css";
 import UserInfoPanel from "../homePage/UserInfoPanel";
 import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profileService";
+import NotificationManager from "../homePage/NotificationManager";
+
+//por ahorita para probar la notificación
+import { medicinesPrueba } from "./medecineData";
 
 export default function Home() {
   const [showUserPanel, setShowUserPanel] = useState(false);
@@ -65,6 +69,9 @@ medicines.forEach((medicine) => {
 });
 
   return (
+
+<>
+<NotificationManager medicines={medicinesPrueba} />
     <div className="flex min-h-screen bg-white overflow-x-hidden">
       <Sidebar />
 
@@ -104,11 +111,9 @@ medicines.forEach((medicine) => {
             />
           )}
 
-
-
-
         </div>
       </div>
     </div>
+    </>
   );
 }

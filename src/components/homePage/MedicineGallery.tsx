@@ -14,17 +14,27 @@ function MedicineCarousel({ medicines }: MedicineCarouselProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center gap-4 w-250">
+    <div className="flex items-center gap-2 w-full max-w-250 md:gap-4">
       <button
         onClick={() => swiperInstance?.slidePrev()}
-        className="shrink-0 flex items-center justify-center w-12 h-12 text-4xl text-blue-900 hover:text-gray-400 transition-all duration-200 font-semibold"
+        className="shrink-0 flex items-center justify-center w-8 h-10 text-3xl text-blue-900 hover:text-gray-400 transition-all duration-200 font-semibold md:w-12 md:h-12 md:text-4xl"
       >
         &#8249;
       </button>
       <div className="flex-1 min-w-0">
       <Swiper
-        slidesPerView={3}
-        spaceBetween={15}
+        slidesPerView={1}
+        spaceBetween={12}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 14,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 15,
+          },
+        }}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         className="w-full"
       >
@@ -34,7 +44,7 @@ function MedicineCarousel({ medicines }: MedicineCarouselProps) {
           </SwiperSlide>
         ))}
         <SwiperSlide >
-            <button onClick={() => navigate('/medicine-form')} className="w-52 h-64 bg-white rounded-3xl flex flex-col items-center justify-center gap-2 hover:shadow-xl transition-shadow">
+            <button onClick={() => navigate('/medicine-form')} className="w-full max-w-52 h-64 bg-white rounded-3xl flex flex-col items-center justify-center gap-2 hover:shadow-xl transition-shadow">
               <div className="w-14 h-14 color-blue rounded-full flex items-center justify-center">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                   <path d="M12 5v14M5 12h14" />
@@ -47,7 +57,7 @@ function MedicineCarousel({ medicines }: MedicineCarouselProps) {
       </div>
       <button
         onClick={() => swiperInstance?.slideNext()}
-        className="shrink-0 flex items-center justify-center text-4xl w-12 h-12  text-blue-900 hover:text-gray-400 transition-all duration-200 font-semibold"
+        className="shrink-0 flex items-center justify-center text-3xl w-8 h-10 text-blue-900 hover:text-gray-400 transition-all duration-200 font-semibold md:w-12 md:h-12 md:text-4xl"
       >
         &#8250;
       </button>

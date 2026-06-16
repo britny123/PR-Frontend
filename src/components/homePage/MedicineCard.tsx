@@ -42,7 +42,7 @@ const handleEdit = () => {
 
   return (
     <div
-      className={`bg-white rounded-3xl p-6 w-52 border border-gray-200 hover:shadow-xl transition-all duration-300 ${
+      className={`bg-white rounded-3xl p-6 w-full max-w-52 border border-gray-200 hover:shadow-xl transition-all duration-300 ${
         showMore ? "h-98" : "h-64"
       }`}
     >

@@ -49,12 +49,27 @@ export default function Home() {
     medicine.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const medicineDays: Date[] = [];
+
+medicines.forEach((medicine) => {
+  const start = new Date(medicine.startDate + "T00:00:00");
+  const end = new Date(medicine.endDate + "T00:00:00");
+
+  for (
+    let day = new Date(start);
+    day <= end;
+    day.setDate(day.getDate() + 1)
+  ) {
+    medicineDays.push(new Date(day));
+  }
+});
+
   return (
-    <div className="flex min-h-screen bg-white overflow-hidden">
+    <div className="flex min-h-screen bg-white overflow-x-hidden">
       <Sidebar />
 
-      <div className="flex-1 flex flex-col min-w-0 ml-28">
-        <div className="shrink-0 px-6 pt-6 pb-4">
+      <div className="flex-1 flex flex-col min-w-0 pt-40 md:ml-28 md:pt-0">
+        <div className="shrink-0 px-4 pb-4 md:px-6 md:pt-6">
           <Header
             userName={profile?.name || "User"}
             date={new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
@@ -64,19 +79,19 @@ export default function Home() {
           />
         </div>
 
-        <div className="flex-1 px-6 pb-6 min-h-0">
-          <div className="w-full h-full bg-gray-100 rounded-tl-3xl rounded-bl-3xl overflow-hidden">
-            <div className="p-6 mt-6 ">
+        <div className="flex-1 px-3 pb-4 min-h-0 md:px-6 md:pb-6">
+          <div className="w-full h-full bg-gray-100 rounded-2xl overflow-hidden md:rounded-tl-3xl md:rounded-bl-3xl">
+            <div className="p-4 md:p-6 md:mt-6">
               <MedicineSection medicines={filteredMedicines} />
-              <div className="mt-7 pl-18">
-                <MedicineCalendar medicineDays={[]} />
+              <div className="mt-7 md:pl-18">
+                <MedicineCalendar  medicineDays={medicineDays} />
               </div>
             </div>
           </div>
 
           {/* Panel de Usuario - Aparece al hacer click */}
           {showUserPanel && (
-            <div className="fixed right-0 top-24 bottom-0 w-80 bg-white shadow-lg z-40 overflow-y-auto p-3 border border-gray-300">
+            <div className="fixed right-0 top-16 bottom-0 w-full max-w-80 bg-white shadow-lg z-50 overflow-y-auto p-3 border border-gray-300 md:top-24">
               <UserInfoPanel />
             </div>
           )}

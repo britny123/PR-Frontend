@@ -20,7 +20,7 @@ export default function FontSettings({
 }: FontSettingsProps) {
   return (
     <div className="w-full space-y-6">
-      <p className="opacity-40  text-center paragraph text-lg">Font settings</p>
+      <p className="opacity-40 paragraph w-40 text-center">Font size {fontSize}%</p>
 
       {/* Font Size Control */}
       <div className="space-y-2">
@@ -42,28 +42,28 @@ export default function FontSettings({
       </div>
 
       {/* Font Weight and Letter Spacing */}
-      <div className="flex gap-4 justify-center">
+        <div className="flex flex-wrap gap-4 justify-center">
         <button
           onClick={() => onFontWeightChange(!fontWeight)}
-          className={`cursor-pointer px-6 py-3 rounded-lg text-4xl transition-all ${
+          className={`cursor-pointer min-w-37.5 min-h-45 px-6 py-3 rounded-lg text-4xl transition-all ${
             fontWeight
               ? "bg-blue text-blue border-2 border-blue"
               : "bg-white text-blue border-2 border-gray-300 hover:border-blue"
           }`}
         >
           <p className={fontWeight ? "font-bold" : "font-normal"}>B</p>
-          <p className="text-sm paragraph text-black opacity-40 ">Font weight</p>
+          <p className="paragraph text-black opacity-40 text-center wrap-break-word">Font weight</p>
         </button>
         <button
           onClick={() => onLetterSpacingChange(!letterSpacing)}
-          className={`cursor-pointer px-6 py-3 rounded-lg text-4xl transition-all ${
+          className={`cursor-pointer min-w-37.5 min-h-45 px-6 py-3 rounded-lg text-4xl transition-all ${
             letterSpacing
               ? "bg-blue text-blue border-2 border-blue"
               : "bg-white text-blue border-2 border-gray-300 hover:border-blue"
           }`}
         >
             <p className={letterSpacing ? "tracking-widest" : "tracking-normal"}>A B</p>
-            <p className="text-sm paragraph text-black opacity-40 ">Letter spacing</p>
+            <p className="paragraph text-black opacity-40 text-center wrap-break-word">Letter spacing</p>
         </button>
       </div>
     </div>

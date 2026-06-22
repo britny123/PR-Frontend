@@ -76,8 +76,6 @@ export default function AccessibilityCard() {
 
   return (
     
-    //cambio 1
-    //<div className="w-96 bg-white rounded-3xl border border-gray-300 flex flex-col gap-3 p-8 justify-center items-center shadow-sm overflow-hidden">
     <div className="w-full max-w-md bg-white rounded-3xl border border-gray-300 flex flex-col gap-3 p-8 justify-center items-center shadow-sm">
       <h2 className="w-full rounded-full color-blue text-white text-lg font-bold text-center p-2 title mb-1">
         Accessibility settings

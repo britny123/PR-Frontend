@@ -1,3 +1,5 @@
+import { BellRing } from "lucide-react";
+
 interface NotificationModalProps {
   isOpen: boolean;
   medicineName: string;
@@ -22,7 +24,7 @@ export default function NotificationModal({
     <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
       <div className="bg-white rounded-3xl w-87.5 p-10 shadow-2xl">
         <div className="flex flex-col items-center gap-6">
-          <div className="text-6xl">🔔</div>
+          <BellRing size={60} color="#2469A0" />
 
           <h2 className="text-blue title font-bold text-2xl text-center">
             Time for your medication

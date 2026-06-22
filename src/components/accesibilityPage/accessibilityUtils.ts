@@ -8,12 +8,7 @@ export const applyAccessibilitySettings = (
   "--accessibility-font-scale",
   `${settings.fontSize / 100}`
 );
-  /*
-  document.documentElement.style.setProperty(
-    "--accessibility-font-scale",
-    `${settings.fontSize}%`
-  );
-*/
+
   document.documentElement.style.setProperty(
     "--accessibility-font-weight",
     settings.fontWeight ? "700" : "400"

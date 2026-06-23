@@ -8,6 +8,8 @@ import UserInfoPanel from "../homePage/UserInfoPanel";
 import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profileService";
 import NotificationManager from "../homePage/NotificationManager";
+import { speak } from "../accesibilityPage/textToSpeech";
+import { getAccessibilitySettings } from "../../services/accessibilityService";
 
 //por ahorita para probar la notificación
 import { medicinesPrueba } from "./medecineData";
@@ -49,6 +51,18 @@ export default function Home() {
     loadMedicines();
   }, []);
 
+  useEffect(() => {
+
+  const settings = getAccessibilitySettings();
+
+  if (settings.textToSpeech) {
+    speak(
+      "Welcome to the home page. Move the mouse over any section to hear information."
+    );
+  }
+  
+}, []);
+
   const filteredMedicines = medicines.filter((medicine) =>
     medicine.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -89,10 +103,12 @@ medicines.forEach((medicine) => {
         <div className="flex-1 px-3 pb-4 min-h-0 md:px-6 md:pb-6">
           <div className="w-full h-full bg-gray-100 rounded-2xl overflow-hidden md:rounded-tl-3xl md:rounded-bl-3xl">
             <div className="p-4 md:p-6 md:mt-6">
-              <MedicineSection medicines={filteredMedicines} />
-              <div className="mt-7 md:pl-18">
-                <MedicineCalendar  medicineDays={medicineDays} />
-              </div>
+              <div onMouseEnter={() =>speak("Medicine list")}>
+                <MedicineSection medicines={filteredMedicines} />
+                  </div>
+              <div className="mt-7 md:pl-18" onMouseEnter={() => speak("Medication calendar")}>
+                <MedicineCalendar medicineDays={medicineDays} />
+                  </div>
             </div>
           </div>
 

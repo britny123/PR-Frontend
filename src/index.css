@@ -17,22 +17,6 @@
   letter-spacing: var(--accessibility-letter-spacing);
 }
 
-/* Para textos principales
-.title {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: var(--accessibility-font-scale);
-  font-weight: var(--accessibility-font-weight);
-  letter-spacing: var(--accessibility-letter-spacing);
-}
-
-/* Para párrafos
-.paragraph {
-  font-family: 'Inria Serif', serif;
-  font-size: var(--accessibility-font-scale);
-  font-weight: var(--accessibility-font-weight);
-  letter-spacing: var(--accessibility-letter-spacing);
-}*/
-
 /*Color para texto */
 .text-blue {
   color: #2469A0;

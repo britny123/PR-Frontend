@@ -2,6 +2,8 @@ import { getAccessibilitySettings } from "../../services/accessibilityService";
 
 export const speak = (text: string): void => {
 
+    console.log("SPEAK EJECUTADO");
+
     const settings = getAccessibilitySettings();
 
     if (!settings.textToSpeech) {

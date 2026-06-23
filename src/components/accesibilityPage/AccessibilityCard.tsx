@@ -3,7 +3,7 @@ import ButtonSmall from "../reusableComponents/SmallButton";
 import FontSettings from "./FontSettings";
 import AccessibilityToggle from "./AccessibilityToggle";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -18,24 +18,12 @@ import {
 export default function AccessibilityCard() {
 
   const navigate = useNavigate();
+  const initialSettings = getAccessibilitySettings();
 
-  const [fontSize, setFontSize] = useState(100);
-  const [fontWeight, setFontWeight] = useState(false);
-  const [letterSpacing, setLetterSpacing] = useState(false);
-  const [textToSpeech, setTextToSpeech] = useState(false);
-
-  useEffect(() => {
-
-    const settings = getAccessibilitySettings();
-
-    setFontSize(settings.fontSize);
-    setFontWeight(settings.fontWeight);
-    setLetterSpacing(settings.letterSpacing);
-    setTextToSpeech(settings.textToSpeech);
-
-    applyAccessibilitySettings(settings);
-
-  }, []);
+const [fontSize, setFontSize] = useState(initialSettings.fontSize);
+const [fontWeight, setFontWeight] = useState(initialSettings.fontWeight);
+const [letterSpacing, setLetterSpacing] = useState(initialSettings.letterSpacing);
+const [textToSpeech, setTextToSpeech] = useState(initialSettings.textToSpeech);
 
   useEffect(() => {
 
@@ -45,6 +33,8 @@ export default function AccessibilityCard() {
       letterSpacing,
       textToSpeech
     };
+
+    
 
     saveAccessibilitySettings(settings);
     applyAccessibilitySettings(settings);

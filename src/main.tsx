@@ -9,7 +9,7 @@ import {
 
 import {
   applyAccessibilitySettings
-} from "./components/accesibilityPage/AccessibilityUtils.ts";
+} from "./components/accesibilityPage/accessibilityUtils.ts";
 
 applyAccessibilitySettings(
   getAccessibilitySettings()

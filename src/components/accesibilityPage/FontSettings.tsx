@@ -19,8 +19,8 @@ export default function FontSettings({
   onLetterSpacingChange,
 }: FontSettingsProps) {
   return (
-    <div className="w-full space-y-6">
-      <p className="opacity-40 paragraph w-40 text-center">Font size {fontSize}%</p>
+    <div className="w-full space-y-6 flex flex-col items-center">
+      {/* <p className="opacity-40 paragraph text-center">Font size {fontSize}%</p>*/}
 
       {/* Font Size Control */}
       <div className="space-y-2">

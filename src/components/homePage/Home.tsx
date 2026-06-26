@@ -92,7 +92,7 @@ medicines.forEach((medicine) => {
       <div className="flex-1 flex flex-col min-w-0 pt-40 md:ml-28 md:pt-0">
         <div className="shrink-0 px-4 pb-4 md:px-6 md:pt-6">
           <Header
-            userName={profile?.name || "User"}
+            userName={profile?.name || "User"} 
             date={new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
             onProfileClick={() => setShowUserPanel(!showUserPanel)}
             search={search}

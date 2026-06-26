@@ -1,6 +1,7 @@
 import { Settings } from "lucide-react";
 import logo2 from "../../assets/logo2.png";
 import { useNavigate } from "react-router-dom";
+import { speak } from "../accesibilityPage/textToSpeech";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function Sidebar() {
 
       <button
         className="flex items-center justify-center w-10 h-10"
-        onClick={() => navigate("/accessibility")}
+        onClick={() => navigate("/accessibility")} onMouseEnter={() => speak("Accesibility Settings button")}
       >
         <Settings size={24} color="#2469A0" />
       </button>

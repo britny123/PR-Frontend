@@ -1,4 +1,5 @@
 import { Search } from "lucide-react";
+import { speak } from "../accesibilityPage/textToSpeech";
 
 interface SearchBarProps {
   value: string;
@@ -12,7 +13,7 @@ export default function SearchBar({
   placeholder = "Search medicines, doses, etc.",
 }: SearchBarProps) {
   return (
-    <div className="relative w-full max-w-2xl">
+    <div className="relative w-full max-w-2xl" onMouseEnter={() => speak("Search bar")}>
       <input
         type="text"
         value={value}

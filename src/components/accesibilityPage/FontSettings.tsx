@@ -1,5 +1,6 @@
 // Componente para configurar los ajustes de fuente
 // Permite ajustar tamaño de fuente, peso y espaciado de letras
+import { speak } from "../accesibilityPage/textToSpeech";
 
 interface FontSettingsProps {
   fontSize: number;
@@ -23,7 +24,7 @@ export default function FontSettings({
       {/* <p className="opacity-40 paragraph text-center">Font size {fontSize}%</p>*/}
 
       {/* Font Size Control */}
-      <div className="space-y-2">
+      <div className="space-y-2" onMouseEnter={() => speak("Font size")}>
         <div className="flex justify-center items-center gap-8 border border-blue-opacity p-1 rounded-full">
           <button
             onClick={() => onFontSizeChange(Math.max(fontSize - 10, 80))}
@@ -41,10 +42,10 @@ export default function FontSettings({
         </div>
       </div>
 
-      {/* Font Weight and Letter Spacing */}
+      {/* Font Weight and Letter Spacing */} 
         <div className="flex flex-wrap gap-4 justify-center">
         <button
-          onClick={() => onFontWeightChange(!fontWeight)}
+          onClick={() => onFontWeightChange(!fontWeight)} onMouseEnter={() => speak("Font Weight")}
           className={`cursor-pointer min-w-37.5 min-h-45 px-6 py-3 rounded-lg text-4xl transition-all ${
             fontWeight
               ? "bg-blue text-blue border-2 border-blue"
@@ -55,7 +56,7 @@ export default function FontSettings({
           <p className="paragraph text-black opacity-40 text-center wrap-break-word">Font weight</p>
         </button>
         <button
-          onClick={() => onLetterSpacingChange(!letterSpacing)}
+          onClick={() => onLetterSpacingChange(!letterSpacing)} onMouseEnter={() => speak("Letter Spacing")}
           className={`cursor-pointer min-w-37.5 min-h-45 px-6 py-3 rounded-lg text-4xl transition-all ${
             letterSpacing
               ? "bg-blue text-blue border-2 border-blue"

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profileService";
 import MedicalHistoryModal from "./MedicalHistoryModal";
 import { getMedicineHistory } from "../../services/medicineService";
+import { speak } from "../accesibilityPage/textToSpeech";
 
 export default function UserInfoPanel() {
   const navigate = useNavigate();
@@ -26,6 +27,18 @@ export default function UserInfoPanel() {
     loadProfile();
 
   }, []);
+
+  useEffect(() => {
+
+  if (profile) {
+
+    speak(
+      `User profile. Name ${profile.name}. Blood type ${profile.blood_type}. Age ${profile.age}.`
+    );
+
+  }
+
+}, [profile]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -64,7 +77,7 @@ export default function UserInfoPanel() {
       </div>
 
       <div className="p-3 rounded-3xl border border-gray-200">
-        <div className="p-3">
+        <div className="p-3" onMouseEnter={() => speak("Identification information")}>
           <p className="text-sm font-semibold text-gray-800 mb-2">
             Identification
           </p>
@@ -75,7 +88,7 @@ export default function UserInfoPanel() {
           </div>
         </div>
 
-        <div className="p-3">
+        <div className="p-3" onMouseEnter={() => speak("Emergency contact information")}>
           <p className="text-sm font-semibold text-gray-800 mb-2">
             Emergency Contact
           </p>
@@ -86,7 +99,7 @@ export default function UserInfoPanel() {
           </div>
         </div>
 
-        <div className="p-3">
+        <div className="p-3" onMouseEnter={() => speak("Allergies and medical conditions")}>
           <p className="text-sm font-semibold text-gray-800 mb-0.5">
             Allergies
           </p>
@@ -113,19 +126,19 @@ export default function UserInfoPanel() {
       </div>
 
       <div className="flex flex-col gap-3 mt-4">
-        <button
+        <button onMouseEnter={() => speak("Edit personal information button")}
           onClick={() => navigate("/edit-profile")}
           className="w-full h-12 rounded-full color-water-blue text-white font-semibold cursor-pointer"
         >
           Edit personal information
         </button>
-        <button
+        <button onMouseEnter={() => speak("Update emergency contact button")}
           onClick={() => navigate("/edit-emergency-contact")}
           className="w-full h-12 rounded-full color-water-blue text-white font-semibold cursor-pointer"
         >
           Update emergency contact
         </button>
-        <button
+        <button onMouseEnter={() => speak("Medication history button")}
           onClick={openHistory}
           className="w-full h-12 rounded-full color-water-blue text-white font-semibold cursor-pointer"
         >
@@ -133,7 +146,7 @@ export default function UserInfoPanel() {
         </button>
       </div>
 
-      <button
+      <button onMouseEnter={() => speak("Logout button")}
         onClick={handleLogout}
         className="text-blue font-semibold cursor-pointer"
       >

@@ -11,9 +11,11 @@ import {
   applyAccessibilitySettings
 } from "./components/accesibilityPage/accessibilityUtils.ts";
 
-applyAccessibilitySettings(
-  getAccessibilitySettings()
-);
+getAccessibilitySettings()
+  .then(applyAccessibilitySettings)
+  .catch((error) => {
+    console.error("Error applying accessibility settings:", error);
+  });
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

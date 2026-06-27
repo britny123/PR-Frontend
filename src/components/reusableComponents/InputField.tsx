@@ -19,6 +19,6 @@ export default function InputField({ placeholder, type,  value, onChange,}: Inpu
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className="w-full h-10 px-4 rounded-full border border-blue paragraph opacity-40 cursor-pointer"/>
+      className="w-full h-10 px-4 rounded-full border border-blue paragraph cursor-text text-gray opacity-60"/>
   );
 }

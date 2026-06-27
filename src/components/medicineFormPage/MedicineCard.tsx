@@ -71,7 +71,7 @@ const handleSave = async () => {
 };
 
   return (
-    <div className="w-87.5 bg-white rounded-[30px] border border-gray-300 flex flex-col gap-4 p-6 sm:p-10 justify-center items-center">
+    <div className="w-87.5 bg-white rounded-[30px] border border-gray-300 flex flex-col gap-3 p-6 sm:p-10 justify-center items-center">
       <h2 className="text-blue text-xl font-bold text-center title">
         {isEditing ? "Edit medicine" : "Add a new medicine"}
       </h2>
@@ -90,6 +90,7 @@ const handleSave = async () => {
         onChange={(e) => setDailyDose(e.target.value)}
       />
 
+      <p className="title text-sm font-semibold text-gray opacity-40 text-center">Time of Take</p>
       <InputField
         placeholder="Time of Take"
         type="time"
@@ -99,14 +100,17 @@ const handleSave = async () => {
 
       <FormRow>
         <div className="w-1/2 min-w-0">
+          <p className="title text-sm font-semibold text-gray opacity-40 text-center">Start Date</p>
           <InputField placeholder="StartDate" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         </div>
 
        <div className="w-1/2 min-w-0">
+          <p className="title text-sm font-semibold text-gray opacity-40 text-center">End Date</p>
           <InputField placeholder="EndDate" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
       </FormRow>
 
+      <p className="title text-sm font-semibold text-gray opacity-40 text-center">Expiration Date</p>
       <InputField placeholder="Expiration Date" type="date" value={ExpirationDate} onChange={(e) => setExpirationDate(e.target.value)} />
 
       <MedicineIcon 

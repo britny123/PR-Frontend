@@ -1,7 +1,7 @@
 import Sidebar from "../homePage/Sidebar";
 import { MedicineCalendar } from "../homePage/Calendar";
 import MedicineSection from "./MedicineSection";
-import { getMedicines } from "../../services/medicineService";
+import { getMedicines, transformMedicinesForNotification } from "../../services/medicineService";
 import Header from "../homePage/HeaderBar";
 import "react-day-picker/dist/style.css";
 import UserInfoPanel from "../homePage/UserInfoPanel";
@@ -11,13 +11,11 @@ import NotificationManager from "../homePage/NotificationManager";
 import { speak } from "../accesibilityPage/textToSpeech";
 import { getAccessibilitySettings } from "../../services/accessibilityService";
 
-//por ahorita para probar la notificación
-import { medicinesPrueba } from "./medecineData";
-
 export default function Home() {
   const [showUserPanel, setShowUserPanel] = useState(false);
   const [profile, setProfile] = useState<any>(null);
   const [medicines, setMedicines] = useState<any[]>([]);
+  const [notificationMedicines, setNotificationMedicines] = useState<any[]>([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -43,6 +41,8 @@ export default function Home() {
       try {
         const data = await getMedicines();
         setMedicines(data);
+        const transformedMedicines = transformMedicinesForNotification(data);
+        setNotificationMedicines(transformedMedicines);
       } catch (error) {
         console.error("Error loading medicines:", error);
       }
@@ -52,16 +52,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const initializeAccessibility = async () => {
+      const settings = await getAccessibilitySettings();
 
-  const settings = getAccessibilitySettings();
+      if (settings.textToSpeech) {
+        await speak(
+          "Welcome to the home page. Move the mouse over any section to hear information."
+        );
+      }
+    };
 
-  if (settings.textToSpeech) {
-    speak(
-      "Welcome to the home page. Move the mouse over any section to hear information."
-    );
-  }
-  
-}, []);
+    initializeAccessibility();
+  }, []);
 
   const filteredMedicines = medicines.filter((medicine) =>
     medicine.name.toLowerCase().includes(search.toLowerCase())
@@ -85,7 +87,7 @@ medicines.forEach((medicine) => {
   return (
 
 <>
-<NotificationManager medicines={medicinesPrueba} />
+<NotificationManager medicines={notificationMedicines} />
     <div className="flex min-h-screen bg-white overflow-x-hidden">
       <Sidebar />
 
@@ -103,10 +105,10 @@ medicines.forEach((medicine) => {
         <div className="flex-1 px-3 pb-4 min-h-0 md:px-6 md:pb-6">
           <div className="w-full h-full bg-gray-100 rounded-2xl overflow-hidden md:rounded-tl-3xl md:rounded-bl-3xl">
             <div className="p-4 md:p-6 md:mt-6">
-              <div onMouseEnter={() =>speak("Medicine list")}>
+              <div onMouseEnter={() => void speak("Medicine list")}>
                 <MedicineSection medicines={filteredMedicines} />
                   </div>
-              <div className="mt-7 md:pl-18" onMouseEnter={() => speak("Medication calendar")}>
+              <div className="mt-7 md:pl-18" onMouseEnter={() => void speak("Medication calendar")}>
                 <MedicineCalendar medicineDays={medicineDays} />
                   </div>
             </div>

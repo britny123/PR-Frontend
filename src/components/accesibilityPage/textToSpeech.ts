@@ -1,20 +1,22 @@
 import { getAccessibilitySettings } from "../../services/accessibilityService";
 
-export const speak = (text: string): void => {
+export const speak = async (text: string): Promise<void> => {
 
-    console.log("SPEAK EJECUTADO");
+    try {
+        const settings = await getAccessibilitySettings();
 
-    const settings = getAccessibilitySettings();
+        if (!settings.textToSpeech) {
+            return;
+        }
 
-    if (!settings.textToSpeech) {
-        return;
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        utterance.lang = "en-US";
+
+        window.speechSynthesis.speak(utterance);
+    } catch (error) {
+        console.error("Error in speak function:", error);
     }
-
-    window.speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-
-    utterance.lang = "en-US";
-
-    window.speechSynthesis.speak(utterance);
 };

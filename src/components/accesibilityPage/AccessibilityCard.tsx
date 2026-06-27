@@ -19,14 +19,34 @@ import {
 export default function AccessibilityCard() {
 
   const navigate = useNavigate();
-  const initialSettings = getAccessibilitySettings();
 
-const [fontSize, setFontSize] = useState(initialSettings.fontSize);
-const [fontWeight, setFontWeight] = useState(initialSettings.fontWeight);
-const [letterSpacing, setLetterSpacing] = useState(initialSettings.letterSpacing);
-const [textToSpeech, setTextToSpeech] = useState(initialSettings.textToSpeech);
+  const [fontSize, setFontSize] = useState(100);
+  const [fontWeight, setFontWeight] = useState(false);
+  const [letterSpacing, setLetterSpacing] = useState(false);
+  const [textToSpeech, setTextToSpeech] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const loadSettings = async () => {
+      try {
+        const settings = await getAccessibilitySettings();
+        setFontSize(settings.fontSize);
+        setFontWeight(settings.fontWeight);
+        setLetterSpacing(settings.letterSpacing);
+        setTextToSpeech(settings.textToSpeech);
+        applyAccessibilitySettings(settings);
+      } catch (error) {
+        console.error("Error loading accessibility settings:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadSettings();
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
 
     const settings = {
       fontSize,
@@ -35,8 +55,6 @@ const [textToSpeech, setTextToSpeech] = useState(initialSettings.textToSpeech);
       textToSpeech
     };
 
-    
-
     saveAccessibilitySettings(settings);
     applyAccessibilitySettings(settings);
 
@@ -44,10 +62,11 @@ const [textToSpeech, setTextToSpeech] = useState(initialSettings.textToSpeech);
     fontSize,
     fontWeight,
     letterSpacing,
-    textToSpeech
+    textToSpeech,
+    isLoading
   ]);
 
-  const handleResetSettings = () => {
+  const handleResetSettings = async () => {
 
     const defaultSettings = {
       fontSize: 100,
@@ -61,9 +80,17 @@ const [textToSpeech, setTextToSpeech] = useState(initialSettings.textToSpeech);
     setLetterSpacing(defaultSettings.letterSpacing);
     setTextToSpeech(defaultSettings.textToSpeech);
 
-    saveAccessibilitySettings(defaultSettings);
+    await saveAccessibilitySettings(defaultSettings);
     applyAccessibilitySettings(defaultSettings);
   };
+
+  if (isLoading) {
+    return (
+      <div className="w-full max-w-md bg-white rounded-3xl border border-gray-300 flex flex-col gap-3 p-8 justify-center items-center shadow-sm">
+        <p className="paragraph text-gray-500">Loading accessibility settings...</p>
+      </div>
+    );
+  }
 
   return (
     
@@ -86,13 +113,13 @@ const [textToSpeech, setTextToSpeech] = useState(initialSettings.textToSpeech);
         onTextToSpeechChange={setTextToSpeech}
       />
 
-      <div className="w-full space-y-2" onMouseEnter={() => speak("Reset settings Button")}>
+      <div className="w-full space-y-2" onMouseEnter={() => void speak("Reset settings Button")}>
         <ButtonLarge
           onClick={handleResetSettings} 
           text="Reset settings"
         />
 
-        <div className="flex justify-center w-full" onMouseEnter={() => speak("Exit Button")}>
+        <div className="flex justify-center w-full" onMouseEnter={() => void speak("Exit Button")}>
           <ButtonSmall
             onClick={() => navigate("/home")}
             text="Exit"

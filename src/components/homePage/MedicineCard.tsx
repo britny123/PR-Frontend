@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { deleteMedicine } from "../../services/medicineService";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 interface MedicineCardProps {
   medicine: {
@@ -24,18 +26,51 @@ const handleEdit = () => {
   navigate(`/medicine-form/${medicine.id}`, { state: { medicine } });
 };
 
-  const handleDelete = async () => {
-    const confirmDelete = window.confirm(
-    `Are you sure you want to delete ${medicine.name}?`
-  );
 
-  if (!confirmDelete) {
-    return;
-  }
+const handleDelete = async () => {
+  const result = await Swal.fire({
+    title: "Delete Medicine",
+    text: `Are you sure you want to delete "${medicine.name}"?`,
+    icon: "warning",
+    iconColor: "#2469A0",
+    showCancelButton: true,
+    confirmButtonColor: "#2469A0",
+    cancelButtonColor: "#6c757d",
+    confirmButtonText: "Delete",
+    cancelButtonText: "Cancel",
+    customClass: {
+    popup: "rounded-swal",
+    title: "text-blue text-lg font-bold title",
+  },
+  });
+
+  if (!result.isConfirmed) return;
+
   try {
     await deleteMedicine(medicine.id);
+
+    await Swal.fire({
+      title: "Deleted",
+      text: `${medicine.name} was deleted successfully.`,
+      icon: "success",
+      iconColor: "#2469A0",
+      timer: 1500,
+      showConfirmButton: false,
+      customClass: {
+    popup: "rounded-swal",
+    title: "text-blue text-lg font-bold title",
+  },
+    });
+
     window.location.reload();
   } catch (error) {
+    await Swal.fire({
+      title: "Error",
+      text: "An error occurred while deleting the medicine.",
+      icon: "error",
+      iconColor: "#2469A0",
+    });
+
     console.error("Error deleting medicine:", error);
   }
 };

@@ -17,6 +17,15 @@
   letter-spacing: var(--accessibility-letter-spacing);
 }
 
+.rounded-swal {
+  border-radius: 24px !important;
+  font-family: "Inria Serif", serif !important;
+  font-size: calc(0.875rem * var(--accessibility-font-scale));
+  font-weight: var(--accessibility-font-weight);
+  letter-spacing: var(--accessibility-letter-spacing);
+}
+
+
 /*Color para texto */
 .text-blue {
   color: #2469A0;

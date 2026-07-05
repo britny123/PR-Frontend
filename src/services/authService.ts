@@ -4,7 +4,7 @@ export const register = async (
     password: string
 ) => {
     const response = await fetch(
-        "https://prback-1.onrender.com/api/auth/register",
+        "http://localhost:3000/api/auth/register",
         {
             method: "POST",
             headers: {
@@ -32,7 +32,7 @@ export const login = async (
     password: string
 ) => {
     const response = await fetch(
-        "https://prback-1.onrender.com/api/auth/login",
+        "http://localhost:3000/api/auth/login",
         {
             method: "POST",
             headers: {

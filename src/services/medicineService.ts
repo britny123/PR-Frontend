@@ -111,13 +111,13 @@ export const deleteMedicine = async (id: string) => {
     return data;
 };
 
-// Transforma datos del backend al formato esperado por NotificationManager
+
 export const transformMedicinesForNotification = (backendMedicines: any[]) => {
   return backendMedicines.map((medicine) => ({
     id: medicine.id,
     name: medicine.name,
     dose: medicine.dailyDose,
-    time: medicine.timeTake.substring(0, 5), // Convierte "HH:MM:SS" a "HH:MM"
+    time: medicine.timeTake.substring(0, 5), 
     icon: medicine.icon,
   }));
 };

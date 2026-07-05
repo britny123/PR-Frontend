@@ -6,11 +6,7 @@ interface MedicalHistoryModalProps {
   history: any[];
 }
 
-export default function MedicalHistoryModal({
-  isOpen,
-  onClose,
-  history,
-}: MedicalHistoryModalProps) {
+export default function MedicalHistoryModal({ isOpen,onClose,history,}: MedicalHistoryModalProps) {
 
   if (!isOpen) return null;
 

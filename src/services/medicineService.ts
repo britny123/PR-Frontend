@@ -2,7 +2,7 @@ export const createMedicine = async (medicineData: any) => {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-        "http://localhost:3000/api/medicines",
+        "https://prback-1.onrender.com/api/medicines",
         {
             method: "POST",
             headers: {
@@ -26,7 +26,7 @@ export const getMedicines = async () => {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-        "http://localhost:3000/api/medicines",
+        "https://prback-1.onrender.com/api/medicines",
         {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ export const getMedicines = async () => {
 export const getMedicineById = async (id: string) => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch(`http://localhost:3000/api/medicines/${id}`, {
+  const response = await fetch(`https://prback-1.onrender.com/api/medicines/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -69,7 +69,7 @@ export const updateMedicine = async (
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-        `http://localhost:3000/api/medicines/${id}`,
+        `https://prback-1.onrender.com/api/medicines/${id}`,
         {
             method: "PUT",
             headers: {
@@ -93,7 +93,7 @@ export const deleteMedicine = async (id: string) => {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-        `http://localhost:3000/api/medicines/${id}`,
+        `https://prback-1.onrender.com/api/medicines/${id}`,
         {
             method: "DELETE",
             headers: {
@@ -126,7 +126,7 @@ export const getMedicineHistory = async () => {
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    "http://localhost:3000/api/medicines/history",
+    "https://prback-1.onrender.com/api/medicines/history",
     {
       headers: {
         Authorization: `Bearer ${token}`,

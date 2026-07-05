@@ -2,7 +2,7 @@ export const createProfile = async (profileData: any) => {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-        "http://localhost:3000/api/profile",
+        "https://prback-1.onrender.com/api/profile",
         {
             method: "POST",
             headers: {
@@ -27,7 +27,7 @@ export const getProfile = async () => {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-        "http://localhost:3000/api/profile",
+        "https://prback-1.onrender.com/api/profile",
         {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ export const updateProfile = async (
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    `http://localhost:3000/api/profile/${id}`,
+    `https://prback-1.onrender.com/api/profile/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -80,7 +80,7 @@ export const updateEmergencyContact = async (
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    `http://localhost:3000/api/profile/${id}/emergency-contact`,
+    `https://prback-1.onrender.com/api/profile/${id}/emergency-contact`,
     {
       method: "PATCH",
       headers: {

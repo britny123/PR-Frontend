@@ -11,7 +11,7 @@ export const getAccessibilitySettings = async (): Promise<AccessibilitySettings>
     }
 
     const response = await fetch(
-      "http://localhost:3000/api/accessibility",
+      "https://prback-1.onrender.com/api/accessibility",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export const saveAccessibilitySettings = async (
     }
 
     const response = await fetch(
-      "http://localhost:3000/api/accessibility",
+      "https://prback-1.onrender.com/api/accessibility",
       {
         method: "PUT",
         headers: {
